@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+int main() {
+    int a[10][10], b[10][10], sum[10][10], diff[10][10], mul[10][10];
+    int transA[10][10], transB[10][10];
+    int r1, c1, r2, c2, i, j, k;
+
+    printf("Enter rows and columns of first matrix: ");
+    scanf("%d %d", &r1, &c1);
+
+    printf("Enter elements of first matrix:\n");
+    for (i = 0; i < r1; i++)
+        for (j = 0; j < c1; j++)
+            scanf("%d", &a[i][j]);
+
+    printf("Enter rows and columns of second matrix: ");
+    scanf("%d %d", &r2, &c2);
+
+    printf("Enter elements of second matrix:\n");
+    for (i = 0; i < r2; i++)
+        for (j = 0; j < c2; j++)
+            scanf("%d", &b[i][j]);
+
+    if (r1 == r2 && c1 == c2) {
+        printf("\nAddition:\n");
+        for (i = 0; i < r1; i++) {
+            for (j = 0; j < c1; j++) {
+                sum[i][j] = a[i][j] + b[i][j];
+                printf("%d ", sum[i][j]);
+            }
+            printf("\n");
+        }
+
+        printf("\nSubtraction:\n");
+        for (i = 0; i < r1; i++) {
+            for (j = 0; j < c1; j++) {
+                diff[i][j] = a[i][j] - b[i][j];
+                printf("%d ", diff[i][j]);
+            }
+            printf("\n");
+        }
+    } else {
+        printf("\nAddition and subtraction not possible.\n");
+    }
+
+    if (c1 == r2) {
+        for (i = 0; i < r1; i++) {
+            for (j = 0; j < c2; j++) {
+                mul[i][j] = 0;
+                for (k = 0; k < c1; k++)
+                    mul[i][j] += a[i][k] * b[k][j];
+            }
+        }
+
+        printf("\nMultiplication:\n");
+        for (i = 0; i < r1; i++) {
+            for (j = 0; j < c2; j++)
+                printf("%d ", mul[i][j]);
+            printf("\n");
+        }
+    } else {
+        printf("\nMultiplication not possible.\n");
+    }
+
+    printf("\nTranspose of first matrix:\n");
+    for (i = 0; i < c1; i++) {
+        for (j = 0; j < r1; j++) {
+            transA[i][j] = a[j][i];
+            printf("%d ", transA[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nTranspose of second matrix:\n");
+    for (i = 0; i < c2; i++) {
+        for (j = 0; j < r2; j++) {
+            transB[i][j] = b[j][i];
+            printf("%d ", transB[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
